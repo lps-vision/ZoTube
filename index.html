@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZoTube Web - Ad-Free TV Player</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Sidebar Navigation -->
+        <nav id="sidebar">
+            <div class="logo">
+                <span class="z">Z</span><span class="o">o</span>Tube
+            </div>
+            <ul>
+                <li class="active" data-tab="home"><span>Trending</span></li>
+                <li data-tab="search"><span>Search</span></li>
+                <li data-tab="settings"><span>Settings</span></li>
+            </ul>
+            <div class="ad-shield">
+                <div class="shield-icon">🛡️</div>
+                <div class="shield-text">Ad-Shield Active</div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main id="content">
+            <!-- Home / Trending Tab -->
+            <section id="home-tab" class="tab-content active">
+                <h1 id="category-title">Trending Videos</h1>
+                <div id="video-grid" class="video-grid">
+                    <!-- Videos will be injected here -->
+                    <div class="loading">Loading videos...</div>
+                </div>
+            </section>
+
+            <!-- Search Tab -->
+            <section id="search-tab" class="tab-content">
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search YouTube...">
+                    <button id="search-button">Search</button>
+                </div>
+                <div id="search-results" class="video-grid"></div>
+            </section>
+
+            <!-- Settings Tab -->
+            <section id="settings-tab" class="tab-content">
+                <h1>Settings</h1>
+                <div class="settings-card">
+                    <h2>Bring Your Own Key (BYOK)</h2>
+                    <p class="description">YouTube Data API v3 key hi dah lût la, i personal quota zalen takin hmang rawh.</p>
+                    
+                    <div class="api-status-badge" id="api-status">
+                        <span class="dot"></span> Default Key Active
+                    </div>
+
+                    <div class="input-group">
+                        <label for="api-key-input">API Key (AIzaSy...)</label>
+                        <input type="text" id="api-key-input" placeholder="Enter your API Key">
+                    </div>
+
+                    <div class="button-group">
+                        <button id="save-key-btn" class="btn-primary">Save Key</button>
+                        <button id="clear-key-btn" class="btn-danger">Clear Key</button>
+                    </div>
+
+                    <div class="tutorial-link">
+                        <p>API Key lak dan i hriat loh chuan <strong>console.cloud.google.com</strong> ah lut la, YouTube Data API v3 kha enable rawh.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Fullscreen Player Overlay -->
+        <div id="player-overlay" class="hidden">
+            <div id="player-container"></div>
+            <button id="close-player">Close Player</button>
+        </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>
