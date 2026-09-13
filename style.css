@@ -61,6 +61,11 @@ body {
     transition: all 0.2s;
     display: flex;
     align-items: center;
+    gap: 15px;
+}
+
+#sidebar li i {
+    font-size: 24px;
 }
 
 #sidebar li:hover {
@@ -72,6 +77,42 @@ body {
     color: var(--text-primary);
     border-left: 4px solid var(--zo-red);
     background-color: rgba(255, 0, 0, 0.1);
+}
+
+/* Category Bar */
+.category-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+}
+
+.category-bar::-webkit-scrollbar {
+    display: none;
+}
+
+.category-chip {
+    padding: 10px 20px;
+    background-color: var(--surface);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+}
+
+.category-chip:hover {
+    background-color: #333;
+}
+
+.category-chip.active {
+    background-color: white;
+    color: black;
+    border-color: white;
 }
 
 .ad-shield {
@@ -101,22 +142,24 @@ h1 {
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
 }
 
 .video-card {
     background-color: var(--surface);
-    border-radius: 15px;
+    border-radius: 12px;
     overflow: hidden;
     cursor: pointer;
-    transition: transform 0.2s;
-    border: 1px solid var(--border);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
 }
 
-.video-card:hover {
-    transform: scale(1.03);
-    border-color: var(--text-secondary);
+.video-card:hover, .video-card:focus {
+    transform: scale(1.05);
+    border-color: white;
+    background-color: #2a2a2a;
+    outline: none;
 }
 
 .thumbnail {
@@ -125,10 +168,11 @@ h1 {
     background-color: #000;
     background-size: cover;
     background-position: center;
+    border-bottom: 1px solid var(--border);
 }
 
 .video-info {
-    padding: 15px;
+    padding: 16px;
 }
 
 .video-title {
@@ -140,11 +184,21 @@ h1 {
     -webkit-box-orient: vertical;
     overflow: hidden;
     margin-bottom: 8px;
+    color: var(--text-primary);
 }
 
 .video-meta {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.video-meta::before {
+    content: '•';
+    color: var(--zo-red);
+    font-weight: bold;
 }
 
 /* Tabs */

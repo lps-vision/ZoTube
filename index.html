@@ -6,6 +6,7 @@
     <title>ZoTube Web - Ad-Free TV Player</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -15,9 +16,22 @@
                 <span class="z">Z</span><span class="o">o</span>Tube
             </div>
             <ul>
-                <li class="active" data-tab="home"><span>Trending</span></li>
-                <li data-tab="search"><span>Search</span></li>
-                <li data-tab="settings"><span>Settings</span></li>
+                <li class="active" data-tab="home">
+                    <i class="material-icons">home</i>
+                    <span>Home</span>
+                </li>
+                <li data-tab="search">
+                    <i class="material-icons">search</i>
+                    <span>Search</span>
+                </li>
+                <li data-tab="direct">
+                    <i class="material-icons">play_circle_filled</i>
+                    <span>Direct Play</span>
+                </li>
+                <li data-tab="settings">
+                    <i class="material-icons">settings</i>
+                    <span>Settings</span>
+                </li>
             </ul>
             <div class="ad-shield">
                 <div class="shield-icon">🛡️</div>
@@ -27,22 +41,48 @@
 
         <!-- Main Content Area -->
         <main id="content">
-            <!-- Home / Trending Tab -->
+            <!-- Home Tab with Categories -->
             <section id="home-tab" class="tab-content active">
+                <div id="category-bar" class="category-bar">
+                    <div class="category-chip active" data-category="Trending">Trending</div>
+                    <div class="category-chip" data-category="Mizo">Mizo / Hla</div>
+                    <div class="category-chip" data-category="Music">Music</div>
+                    <div class="category-chip" data-category="Gaming">Gaming</div>
+                    <div class="category-chip" data-category="News">News</div>
+                    <div class="category-chip" data-category="Tech">Tech & Science</div>
+                    <div class="category-chip" data-category="Movies">Movies & Animation</div>
+                    <div class="category-chip" data-category="Relaxing">Relaxing / Lofi</div>
+                </div>
+                
                 <h1 id="category-title">Trending Videos</h1>
                 <div id="video-grid" class="video-grid">
-                    <!-- Videos will be injected here -->
                     <div class="loading">Loading videos...</div>
                 </div>
             </section>
 
             <!-- Search Tab -->
             <section id="search-tab" class="tab-content">
+                <h1>Search Videos</h1>
                 <div class="search-bar">
                     <input type="text" id="search-input" placeholder="Search YouTube...">
-                    <button id="search-button">Search</button>
+                    <button id="search-button" class="btn-primary">Search</button>
                 </div>
                 <div id="search-results" class="video-grid"></div>
+            </section>
+
+            <!-- Direct Play Tab -->
+            <section id="direct-tab" class="tab-content">
+                <h1>Direct Play</h1>
+                <div class="settings-card">
+                    <h2>Video ID or URL</h2>
+                    <p class="description">YouTube video ID emaw URL dah lût la, direct-in play rawh.</p>
+                    
+                    <div class="input-group">
+                        <input type="text" id="direct-input" placeholder="e.g. dQw4w9WgXcQ or https://youtu.be/...">
+                    </div>
+
+                    <button id="direct-play-btn" class="btn-primary" style="width: 100%; height: 50px;">Play Now</button>
+                </div>
             </section>
 
             <!-- Settings Tab -->
