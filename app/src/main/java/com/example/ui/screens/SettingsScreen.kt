@@ -26,6 +26,7 @@ import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.DeleteOutline
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Key
+import androidx.compose.material.icons.filled.PhoneAndroid
 import androidx.compose.material.icons.filled.Save
 import androidx.compose.material.icons.filled.Shield
 import androidx.compose.material.icons.filled.Tv
@@ -78,6 +79,7 @@ fun SettingsScreen(
     adsBlockedCount: Int = 0,
     onSaveApiKey: (String) -> Unit = {},
     onClearApiKey: () -> Unit = {},
+    onOpenTutorial: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     val context = LocalContext.current
@@ -459,7 +461,34 @@ fun SettingsScreen(
 
                         Spacer(modifier = Modifier.height(18.dp))
 
-                        // Step-by-step Guide Card
+                        // Tutorial Launcher Button
+                        Button(
+                            onClick = onOpenTutorial,
+                            colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF1E88E5)),
+                            shape = RoundedCornerShape(10.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(48.dp)
+                                .testTag("open_tutorial_button")
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.PhoneAndroid,
+                                contentDescription = null,
+                                tint = Color.White,
+                                modifier = Modifier.size(20.dp)
+                            )
+                            Spacer(modifier = Modifier.width(10.dp))
+                            Text(
+                                text = "YouTube Data API v3 Key Siam Dan Tutorial (Phone Hmangin)",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 13.sp,
+                                color = Color.White
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(14.dp))
+
+                        // Step-by-step Quick Guide Card
                         Card(
                             colors = CardDefaults.cardColors(containerColor = ZoSurfaceElevated),
                             shape = RoundedCornerShape(10.dp),
@@ -476,7 +505,7 @@ fun SettingsScreen(
                                     )
                                     Spacer(modifier = Modifier.width(8.dp))
                                     Text(
-                                        text = "How to get a Free YouTube Data API v3 Key:",
+                                        text = "YouTube Data API v3 Key Siam Dan Tawi (Mizo):",
                                         color = Color.White,
                                         fontSize = 13.sp,
                                         fontWeight = FontWeight.Bold
@@ -484,13 +513,14 @@ fun SettingsScreen(
                                 }
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
-                                    text = "1. Visit console.cloud.google.com on your computer or phone.\n" +
-                                            "2. Create a free project and search for 'YouTube Data API v3', then click Enable.\n" +
-                                            "3. Go to 'APIs & Services' > 'Credentials' > 'Create Credentials' > 'API Key'.\n" +
-                                            "4. Copy your key, paste it in the box above, and press 'Save Key'.",
+                                    text = "1. Project Thlan: Phone-ah console.cloud.google.com hawng la, project thlang rawh.\n" +
+                                            "2. API Enable: Library-ah lut la, 'YouTube Data API v3' tiin zawngin Enable rawh.\n" +
+                                            "3. Key Siam: Credentials > '+ Create credentials' > 'API key' thlang rawh.\n" +
+                                            "4. Himna (Security): Edit API key-ah lut la, 'Restrict key' thlangin YouTube Data API v3 chauh tick rawh. Application restrictions-ah 'None' thlang rawh.\n" +
+                                            "5. Hmang Tan Rawh: I API Key thar copy la, hetah hian Save rawh.",
                                     color = ZoTextSecondary,
                                     fontSize = 11.sp,
-                                    lineHeight = 16.sp
+                                    lineHeight = 17.sp
                                 )
                             }
                         }

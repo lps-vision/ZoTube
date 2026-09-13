@@ -88,6 +88,10 @@ class ZoTubeViewModel(application: Application) : AndroidViewModel(application) 
     private val _adsBlockedCount = MutableStateFlow(14)
     val adsBlockedCount: StateFlow<Int> = _adsBlockedCount.asStateFlow()
 
+    // Onboarding / Tutorial State
+    private val _showTutorial = MutableStateFlow(!repository.isOnboardingCompleted())
+    val showTutorial: StateFlow<Boolean> = _showTutorial.asStateFlow()
+
     init {
         loadCategoryVideos("Trending")
     }
@@ -234,5 +238,25 @@ class ZoTubeViewModel(application: Application) : AndroidViewModel(application) 
         } else {
             saveCustomApiKey(trimmed)
         }
+    }
+
+    fun openTutorial() {
+        _showTutorial.value = true
+    }
+
+    fun dismissTutorial(dontShowAgain: Boolean = true) {
+        _showTutorial.value = false
+        if (dontShowAgain) {
+            repository.setOnboardingCompleted(true)
+        }
+    }
+
+    fun saveApiKeyFromTutorial(key: String) {
+        val trimmed = key.trim()
+        if (trimmed.isNotEmpty()) {
+            saveCustomApiKey(trimmed)
+        }
+        repository.setOnboardingCompleted(true)
+        _showTutorial.value = false
     }
 }

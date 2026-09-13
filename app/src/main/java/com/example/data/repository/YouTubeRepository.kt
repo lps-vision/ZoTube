@@ -30,6 +30,7 @@ class YouTubeRepository(
     companion object {
         private const val PREFS_NAME = "zotube_preferences"
         const val KEY_CUSTOM_API_KEY = "custom_youtube_api_key"
+        const val KEY_ONBOARDING_COMPLETED = "onboarding_tutorial_completed"
     }
 
     enum class ApiKeySource {
@@ -91,6 +92,20 @@ class YouTubeRepository(
      */
     fun clearCustomApiKey() {
         prefs.edit().remove(KEY_CUSTOM_API_KEY).apply()
+    }
+
+    /**
+     * Checks whether the user has completed or dismissed the initial API key setup tutorial.
+     */
+    fun isOnboardingCompleted(): Boolean {
+        return prefs.getBoolean(KEY_ONBOARDING_COMPLETED, false)
+    }
+
+    /**
+     * Updates the onboarding tutorial completion status.
+     */
+    fun setOnboardingCompleted(completed: Boolean = true) {
+        prefs.edit().putBoolean(KEY_ONBOARDING_COMPLETED, completed).apply()
     }
 
     /**

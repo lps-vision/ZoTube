@@ -16,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.ui.components.ApiKeyTutorialDialog
 import com.example.ui.components.TvSidebar
 import com.example.ui.screens.CategoriesScreen
 import com.example.ui.screens.DirectPlayScreen
@@ -65,6 +66,16 @@ fun ZoTubeApp(viewModel: ZoTubeViewModel) {
     val bookmarks by viewModel.bookmarks.collectAsStateWithLifecycle()
     val byokState by viewModel.byokState.collectAsStateWithLifecycle()
     val adsBlockedCount by viewModel.adsBlockedCount.collectAsStateWithLifecycle()
+    val showTutorial by viewModel.showTutorial.collectAsStateWithLifecycle()
+
+    // First-run / On-demand API Key Tutorial Dialog
+    if (showTutorial) {
+        ApiKeyTutorialDialog(
+            initialApiKey = byokState.customApiKey,
+            onDismiss = { dontShowAgain -> viewModel.dismissTutorial(dontShowAgain) },
+            onSaveKey = { key -> viewModel.saveApiKeyFromTutorial(key) }
+        )
+    }
 
     // If a video is playing, present the full TV player
     if (activeVideo != null) {
@@ -156,6 +167,7 @@ fun ZoTubeApp(viewModel: ZoTubeViewModel) {
                             adsBlockedCount = adsBlockedCount,
                             onSaveApiKey = { newKey -> viewModel.saveCustomApiKey(newKey) },
                             onClearApiKey = { viewModel.clearCustomApiKey() },
+                            onOpenTutorial = { viewModel.openTutorial() },
                             modifier = Modifier.weight(1f)
                         )
                     }

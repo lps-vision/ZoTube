@@ -77,6 +77,17 @@ class ByokTest {
     }
 
     @Test
+    fun test_onboarding_tutorial_persistence() {
+        assertFalse(repository.isOnboardingCompleted())
+
+        repository.setOnboardingCompleted(true)
+        assertTrue(repository.isOnboardingCompleted())
+
+        val sharedPrefs = context.getSharedPreferences("zotube_preferences", Context.MODE_PRIVATE)
+        assertTrue(sharedPrefs.getBoolean(YouTubeRepository.KEY_ONBOARDING_COMPLETED, false))
+    }
+
+    @Test
     fun test_interceptor_appends_key_to_google_apis_request() {
         var capturedUrl: String? = null
         val customKey = "AIzaSyCustomKeySecret999"
