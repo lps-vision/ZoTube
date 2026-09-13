@@ -1,0 +1,6 @@
+{
+  "name": "ZoTube",
+  "description": "Ad-free YouTube player for Android TV and mobile, powered by YouTube API with remote D-pad navigation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
